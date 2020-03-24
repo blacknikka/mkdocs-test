@@ -7,3 +7,4 @@ services:
       - 8000:8000
     volumes:
       - ./:/docs
+      - ~/.ssh:/root/.ssh:ro
