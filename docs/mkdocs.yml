@@ -1,0 +1,21 @@
+site_name: example
+
+nav:
+  - overview: index.md
+  - page1: page1.md
+  - page2: page2.md
+
+theme:
+  name: 'material'
+  language: 'ja'
+  palette:
+    primary: 'indigo'
+    accent: 'indigo'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+# 検索機能
+extra:
+  search:
+    language: 'jp'
