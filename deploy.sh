@@ -1,0 +1,2 @@
+echo $USER_EMAIL
+echo $USER_NAME
