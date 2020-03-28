@@ -2,23 +2,15 @@ version: 2.1
 executors:
   default:
     working_directory: ~/workspace
-    docker:
-      - image: circleci/node:lts-buster
+    machine:
+      image: circleci/node:lts-buster
 jobs:
   deploy:
     executor:
         name: default
     steps:
       - checkout
-      - setup_remote_docker
-    #   - setup_remote_docker:
-    #         docker_layer_caching: true
-      - run:
-            name: Install Docker Compose
-            command: |
-                set -x
-                curl -L https://github.com/docker/compose/releases/download/1.25.3/docker-compose-`uname -s`-`uname -m` > /usr/local/bin/docker-compose
-                chmod +x /usr/local/bin/docker-compose
+    #   - setup_remote_docker
       - run:
             name: deploy
             command: docker info
