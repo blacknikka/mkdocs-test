@@ -5,18 +5,21 @@ executors:
     docker:
       - image: ubuntu:18.04
 jobs:
-  hello:
+  deploy:
     executor:
         name: default
     steps:
       - checkout
       - run:
-            name: hello step
-            command: env
+            name: check
+            command: ls
+      - run:
+            name: check2
+            command: pwd
 workflows:
   setup_and_deploy:
     jobs:
-      - hello:
+      - deploy:
           filters:
             branches:
                 only: master
