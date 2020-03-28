@@ -16,7 +16,7 @@ jobs:
             command: docker-compose up -d && docker cp ./ $(docker-compose ps -q mkdocs):/docs
       - run:
             name: deploy
-            command: docker-compose run mkdocs mkdocs gh-deploy
+            command: docker-compose run mkdocs mkdocs gh-deploy -q
 workflows:
   setup_and_deploy:
     jobs:
