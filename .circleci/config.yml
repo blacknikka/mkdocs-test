@@ -15,12 +15,23 @@ jobs:
             name: mount to docker
             command: docker-compose up -d && docker cp ./ $(docker-compose ps -q mkdocs):/docs
       - run:
+            name: build and copy
+            command: |
+                docker-compose run mkdocs mkdocs build
+                docker cp $(docker-compose ps -q mkdocs):/docs/site ./
+                git checkout gh-pages
+                cp -r -f ./site/* ./
+                rm -rf ./site
+      - run:
             name: deploy
             command: |
-                echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
-                docker-compose run mkdocs mkdocs gh-deploy
+                git add -A
+                git config --global user.name "circle ci"
+                git config --global user.email "user@example.com"
+                git commit -m "circle ci"
+                git push origin gh-pages
 workflows:
-  setup_and_deploy:
+  deploy:
     jobs:
       - deploy:
           filters:
