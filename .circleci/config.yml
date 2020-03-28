@@ -12,12 +12,7 @@ jobs:
       - checkout
       - run:
             name: deploy
-            # command: sh ./deploy.sh
-            command: which docker
-      - run:
-            name: deploy
-            # command: sh ./deploy.sh
-            command: which docker-compose
+            command: sh ./deploy.sh
 workflows:
   setup_and_deploy:
     jobs:
