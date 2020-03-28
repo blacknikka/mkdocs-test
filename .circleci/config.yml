@@ -5,7 +5,7 @@ executors:
     docker:
       - image: circleci/node:lts-buster
 jobs:
-  deploy:
+  build:
     executor:
         name: default
     steps:
@@ -19,12 +19,23 @@ jobs:
             command: |
                 docker-compose run mkdocs mkdocs build
                 docker cp $(docker-compose ps -q mkdocs):/docs/site ./
+      - persist_to_workspace:
+          root: ~/workspace
+          paths:
+            - site/
+  deploy:
+    executor: 
+        name: default
+    steps:
+      - checkout
+      - run:
+            name: checkout
+            command: |
                 git checkout gh-pages
-                cp -r -f ./site/* ./
-                rm -rf ./site
       - run:
             name: deploy
             command: |
+                cp -r -f ./site/* ./
                 git add -A
                 git config --global user.name "circle ci"
                 git config --global user.email "user@example.com"
