@@ -1,2 +1,3 @@
-echo $USER_EMAIL
-echo $USER_NAME
+docker-compose up -d
+docker-compose exec mkdocs mkdocs gh-deploy
+docker-compose down

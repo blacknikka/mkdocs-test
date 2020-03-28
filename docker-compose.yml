@@ -8,6 +8,3 @@ services:
     volumes:
       - ./:/docs
       - ~/.ssh:/root/.ssh:ro
-    environment:
-      USER_EMAIL: ${USER_EMAIL}
-      USER_NAME: ${USER_NAME}
