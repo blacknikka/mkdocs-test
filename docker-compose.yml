@@ -5,6 +5,7 @@ services:
     build: ./docker
     ports:
       - 8000:8000
+    tty: true
     volumes:
       - ./:/docs
       - ~/.ssh:/root/.ssh:ro

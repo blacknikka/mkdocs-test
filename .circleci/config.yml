@@ -2,18 +2,18 @@ version: 2.1
 executors:
   default:
     working_directory: ~/workspace
-    machine:
-      image: circleci/node:lts-buster
+    docker:
+      - image: circleci/node:lts-buster
 jobs:
   deploy:
     executor:
         name: default
     steps:
       - checkout
-    #   - setup_remote_docker
+      - setup_remote_docker
       - run:
             name: deploy
-            command: docker info
+            command: docker-compose up -d && docker cp ./ $(docker-compose ps -q mkdocs):/docs
 workflows:
   setup_and_deploy:
     jobs:
