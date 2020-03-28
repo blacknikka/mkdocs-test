@@ -17,7 +17,7 @@ jobs:
       - run:
             name: deploy
             command: |
-                ssh -T -y git@github.com
+                mkdir ~/.ssh/ && echo -e "Host github.com\n\tStrictHostKeyChecking no\n" > ~/.ssh/config
                 docker-compose run mkdocs mkdocs gh-deploy
 workflows:
   setup_and_deploy:
