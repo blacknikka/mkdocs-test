@@ -38,6 +38,7 @@ jobs:
             name: deploy
             command: |
                 cp -r -f ./site/* ./
+                rm -rf ./site
                 git add -A
                 git config --global user.name "circle ci"
                 git config --global user.email "user@example.com"
