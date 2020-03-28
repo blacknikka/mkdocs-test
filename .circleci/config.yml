@@ -12,7 +12,7 @@ jobs:
       - checkout
       - run:
             name: deploy
-            command: sh ./deploy.sh
+            command: docker info
 workflows:
   setup_and_deploy:
     jobs:
