@@ -11,11 +11,8 @@ jobs:
     steps:
       - checkout
       - run:
-            name: check
-            command: ls
-      - run:
-            name: check2
-            command: pwd
+            name: deploy
+            command: sh ./deploy.sh
 workflows:
   setup_and_deploy:
     jobs:
