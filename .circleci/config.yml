@@ -12,8 +12,11 @@ jobs:
       - checkout
       - setup_remote_docker
       - run:
-            name: deploy
+            name: mount to docker
             command: docker-compose up -d && docker cp ./ $(docker-compose ps -q mkdocs):/docs
+      - run:
+            name: deploy
+            command: docker-compose run mkdocs mkdocs gh-deploy
 workflows:
   setup_and_deploy:
     jobs:
