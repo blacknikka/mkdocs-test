@@ -3,7 +3,7 @@ executors:
   default:
     working_directory: ~/workspace
     docker:
-      - image: ubuntu:18.04
+      - image: docker/compose:debian-1.26.0-rc3
 jobs:
   deploy:
     executor:
@@ -12,7 +12,12 @@ jobs:
       - checkout
       - run:
             name: deploy
-            command: sh ./deploy.sh
+            # command: sh ./deploy.sh
+            command: which docker
+      - run:
+            name: deploy
+            # command: sh ./deploy.sh
+            command: which docker-compose
 workflows:
   setup_and_deploy:
     jobs:
